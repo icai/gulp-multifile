@@ -71,7 +71,7 @@ Default value: `undefined`
 
 Can define rename function to output your file which you should return `Object` including keys `dirname`, `basename`, `extname` in order to make file relative path.
 
-```javascript
+```js
 	rename: function(paths, data, dataFile) {
 	    paths.dirname = path.basename(dataFile.basename, '.json')
 	    paths.basename = data.name;
@@ -98,14 +98,13 @@ Default value: `undefined`
 Can define filter function to skin the item data render which you should `return false`.
 
 
-```
+```js
 filter: function(data, file){
     // data is json model data
     // file is json file
 
     // you should return value here 
 }
-
 
 ```
 

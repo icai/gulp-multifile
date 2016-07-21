@@ -55,7 +55,7 @@ var multifile = function(options) {
             var data = rename.call(null, {}, item, file);
             var tmpldata = {};
             tmpldata[varname] = item;
-            var cwd = process.cwd() || data.cwd;
+            var cwd = process.cwd();
             var base = path.join(cwd, '/');
             var generateFile = new gutil.File({
                 cwd: cwd,
