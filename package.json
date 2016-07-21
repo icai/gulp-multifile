@@ -1,0 +1,31 @@
+{
+  "name": "gulp-multifile",
+  "version": "0.1.1",
+  "description": "generate collection files from json files and template file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/icai/gulp-multifile.git"
+  },
+  "keywords": [
+    "generate",
+    "collection",
+    "json",
+    "template",
+    "file"
+  ],
+  "author": "Terry Cai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icai/gulp-multifile/issues"
+  },
+  "homepage": "https://github.com/icai/gulp-multifile#readme",
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "lodash.template": "^4.2.5",
+    "through2": "^2.0.1"
+  }
+}
