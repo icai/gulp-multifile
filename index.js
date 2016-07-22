@@ -36,7 +36,7 @@ var multifile = function(options) {
         tmpl = options.engine(fileTpl);
     } else {
         var settings = {};
-        setting['variable'] = options.varname || options.variable ||  "data"
+        settings['variable'] = options.varname || options.variable ||  "data"
         if(options.escape)
             settings['escape'] = options.escape;
         if(options.evaluate)
