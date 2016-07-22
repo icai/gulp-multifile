@@ -64,13 +64,19 @@ gulp.task('gen:scss', function() {
 More detailed explanation is below.
 
 #### options.template
+
 Type: `String`
+
 Default value: `undefined`
 
 The template file for collection generating
 
+
+
 #### options.rename
+
 Type: `Function`
+
 Default value: `undefined`
 
 Can define rename function to output your file which you should return `Object` including keys `dirname`, `basename`, `extname` in order to make file relative path.
@@ -90,7 +96,9 @@ Can define rename function to output your file which you should return `Object` 
 
 
 #### options.filter
+
 Type: `Function`
+
 Default value: `undefined`
 
 Can define filter function to skin the item data render which you should `return false`.
@@ -109,7 +117,9 @@ filter: function(data, file){
 
 
 #### options.varname / options.variable
+
 Type: `String`
+
 Default value: `data`
 
 
@@ -119,7 +129,9 @@ Used to reference the data object in the template text.
 
 
 #### options.escape
+
 Type: `RegExp`
+
 Default value: `_.templateSettings.escape`
 
 
@@ -129,9 +141,10 @@ Used to detect `data` property values to be HTML-escaped.
 
 
 #### options.evaluate
-Type: `RegExp`
-Default value: `_.templateSettings.evaluate`
 
+Type: `RegExp`
+
+Default value: `_.templateSettings.evaluate`
 
 lodash templateSettings `_.templateSettings.evaluate`
 
@@ -139,7 +152,9 @@ Used to detect code to be evaluated.
 
 
 #### options.interpolate
+
 Type: `RegExp`
+
 Default value: `_.templateSettings.interpolate`
 
 
@@ -149,9 +164,12 @@ Used to detect `data` property values to inject.
 
 
 #### options.engine
+
 Type: `Function`
+
 Default value: `undefined`
-@return {Function} compiled source method
+
+return {Function} compiled source method
 
 Used to repalce lodash template with other template engine.
 
@@ -184,7 +202,7 @@ generate one file, which this json is a model file.
 
 ####Template Engine
 
-we use `lodash.template` to do this, you can set the parameter `varname`.
+we use `lodash.template` to do this, you can use `engine` parameter to replace  it.
 
 
 

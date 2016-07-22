@@ -1,11 +1,12 @@
 'use strict';
 var assert = require('assert');
+var fs = require('fs');
 var gutil = require('gulp-util');
 var multifile = require('../');
 
 
 
-describe('template parameter', function() {
+describe('template and rename parameter', function() {
 	it('should compile template to target content', function (cb) {
 		var stream = multifile({
 			template: 'test/fixture.tpl',
@@ -54,7 +55,7 @@ describe('template parameter', function() {
 		stream.end();
 	});
 
-	it('should json collection data rended files match target files', function (cb) {
+	it('should json collection data render files match target files', function (cb) {
 		var stream = multifile({
 			template: 'test/fixture-data.tpl',
 			rename: function(path, data, json){
@@ -87,7 +88,7 @@ describe('template parameter', function() {
 
 describe('filter parameter', function() {
 
-	it('should json model data filter rended file match target content', function (cb) {
+	it('should json model data filter render file match target content', function (cb) {
 		var stream = multifile({
 			template: 'test/fixture-data.tpl',
 			rename: function(path){
@@ -118,7 +119,7 @@ describe('filter parameter', function() {
 		stream.end();
 	});
 
-	it('should json collection data filter rended files match target files', function (cb) {
+	it('should json collection data filter render files match target files', function (cb) {
 		var stream = multifile({
 			template: 'test/fixture-data.tpl',
 			rename: function(path, data, json){
@@ -155,4 +156,71 @@ describe('filter parameter', function() {
 });
 
 
+describe('engine parameter', function() {
 
+	it('should engine prividor render file match json content', function (cb) {
+		var stream = multifile({
+			template: 'test/fixture-data.tpl',
+			rename: function(path){
+				return {
+					dirname: '',
+					basename: 'fixture',
+					extname: '.html'
+				}
+			},
+			engine: function(templatefile){
+				return function(data){
+					return JSON.stringify(data);
+				}
+
+			}
+		});
+
+		stream.once('data', function (file) {
+			var json = JSON.parse(file.contents.toString());
+			assert.equal(file.relative, 'fixture.html');
+			assert.equal(json.name, "name1");
+			assert.equal(json.color, "cat");
+		});
+		stream.on('end', cb);
+
+		stream.write(new gutil.File({
+			path: 'fixture.json',
+			contents: new Buffer('{ "name": "name1", "color": "cat"}')
+		}));
+		stream.end();
+	});
+
+
+	it('should engine prividor render file match template content', function (cb) {
+		var stream = multifile({
+			template: 'test/fixture-data.tpl',
+			rename: function(path){
+				return {
+					dirname: '',
+					basename: 'fixture',
+					extname: '.html'
+				}
+			},
+			engine: function(templatefile){
+				return function(data){
+					return templatefile;
+				}
+
+			}
+		});
+
+		stream.once('data', function (file) {
+			assert.equal(file.relative, 'fixture.html');
+			assert.equal(file.contents.toString(), fs.readFileSync('test/fixture-data.tpl', "utf8"));
+		});
+		stream.on('end', cb);
+
+		stream.write(new gutil.File({
+			path: 'fixture.json',
+			contents: new Buffer('{ "name": "name1", "color": "cat"}')
+		}));
+		stream.end();
+	});
+
+});
