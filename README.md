@@ -180,7 +180,7 @@ Default value: `undefined`
 
 return {Function} compiled source method
 
-Used to repalce lodash template with other template engine.
+Used to replace lodash template, if the template engine privided.
 
 ```js
 
