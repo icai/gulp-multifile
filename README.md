@@ -218,7 +218,7 @@ we use `lodash.template` to do this, you can use `engine` parameter to replace  
 
 
 ##Demo
-see the [cozhihu](https://github.com/icai/cozhihu) project.
+see the [cozhihu](https://github.com/icai/cozhihu) project or unit testing.
 
 
 ## Contributing
