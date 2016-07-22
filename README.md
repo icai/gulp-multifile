@@ -53,7 +53,7 @@ gulp.task('gen:scss', function() {
 | template             | yes       | `String`   | undefined                           |
 | rename               | yes       | `Function` | undefined                           |
 | [filter]             | no        | `Function` | null                                |
-| [extdata]            | no        | 'Object'   | '{}'                                |
+| [extdata]            | no        | 'Object'   | 'undefined'                                |
 | [varname / variable] | no        | `String`   | 'data', _.templateSettings.variable |
 | [escape]             | no        | 'RegExp'   | _.templateSettings.escape           |
 | [evaluate]           | no        | 'RegExp'   | _.templateSettings.evaluate         |
@@ -113,6 +113,15 @@ filter: function(data, file){
 }
 
 ```
+
+#### options.extdata
+
+Type: `Object`
+
+Default value: `undefined`
+
+
+extend the json data, this `extdata` inject to `data.extdata`, if it given.
 
 
 
