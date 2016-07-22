@@ -23,10 +23,29 @@ var multifile = function(options) {
     if (!templatePath) {
         throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_NAME + ': Invalid template');
     }
-    var varname = options.varname || "data";
 
     var fileTpl = fs.readFileSync(templatePath, "utf8");
-    var tmpl = template(fileTpl);
+
+    var tmpl;
+
+    if(isType(options.engine, 'function')){
+        /**
+         * [tmpl description]
+         * @type {Function} compiled source method
+         */
+        tmpl = options.engine(fileTpl);
+    } else {
+        var settings = {};
+        setting['variable'] = options.varname || options.variable ||  "data"
+        if(options.escape)
+            settings['escape'] = options.escape;
+        if(options.evaluate)
+            settings['evaluate'] = options.evaluate;
+        if(options.interpolate)
+            settings['interpolate'] = options.interpolate;
+        tmpl = template(fileTpl, settings);
+        
+    }
 
 
     return through.obj(function(file, enc, cb) {
@@ -53,8 +72,10 @@ var multifile = function(options) {
             }
 
             var data = rename.call(null, {}, item, file);
-            var tmpldata = {};
-            tmpldata[varname] = item;
+            var tmpldata = item;
+            if(options.extdata){
+                tmpldata['extdata'] = options.extdata;
+            }
             var cwd = process.cwd();
             var base = path.join(cwd, '/');
             var generateFile = new gutil.File({

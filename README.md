@@ -48,13 +48,17 @@ gulp.task('gen:scss', function() {
 
 **Plugin options** are:
 
-|  Property | Necessary |    Type    | Plugin default value |
-| --------- | --------- | ---------- | -------------------- |
-| template  | yes       | `String`   | undefined            |
-| rename    | yes       | `Function` | undefined            |
-| [varname] | no        | `String`   | 'data'               |
-| [filter]  | no        | `Function` | undefined            |
-|           |           |            |                      |
+|       Property       | Necessary |    Type    |         Plugin default value        |
+| -------------------- | --------- | ---------- | ----------------------------------- |
+| template             | yes       | `String`   | undefined                           |
+| rename               | yes       | `Function` | undefined                           |
+| [filter]             | no        | `Function` | null                                |
+| [extdata]            | no        | 'Object'   | '{}'                                |
+| [varname / variable] | no        | `String`   | 'data', _.templateSettings.variable |
+| [escape]             | no        | 'RegExp'   | _.templateSettings.escape           |
+| [evaluate]           | no        | 'RegExp'   | _.templateSettings.evaluate         |
+| [interpolate]        | no        | 'RegExp'   | _.templateSettings.interpolate      |
+| [engine]             | no        | 'Function' | undefined                           |
 	
 
 More detailed explanation is below.
@@ -83,17 +87,11 @@ Can define rename function to output your file which you should return `Object` 
 ```
 
 
-#### options.varname
-Type: `String`
-Default value: `data`
 
-the template engine produced function expects one parameter - data - with the name 'data'.
 
 #### options.filter
 Type: `Function`
 Default value: `undefined`
-
-
 
 Can define filter function to skin the item data render which you should `return false`.
 
@@ -110,10 +108,65 @@ filter: function(data, file){
 
 
 
+#### options.varname / options.variable
+Type: `String`
+Default value: `data`
+
+
+lodash templateSettings `_.templateSettings.variable`
+
+Used to reference the data object in the template text.
+
+
+#### options.escape
+Type: `RegExp`
+Default value: `_.templateSettings.escape`
+
+
+lodash templateSettings `_.templateSettings.escape`
+
+Used to detect `data` property values to be HTML-escaped.
+
+
+#### options.evaluate
+Type: `RegExp`
+Default value: `_.templateSettings.evaluate`
+
+
+lodash templateSettings `_.templateSettings.evaluate`
+
+Used to detect code to be evaluated.
+
+
+#### options.interpolate
+Type: `RegExp`
+Default value: `_.templateSettings.interpolate`
+
+
+lodash templateSettings `_.templateSettings.interpolate`
+
+Used to detect `data` property values to inject.
+
+
+#### options.engine
+Type: `Function`
+Default value: `undefined`
+@return {Function} compiled source method
+
+Used to repalce lodash template with other template engine.
+
+```js
+
+engine: function(templatefile){
+    return doT.template(templatefile);
+}
+
+```
+
 ##Note
 
 ####Json File
-the json pass from gulp.src , which their format as following is current:
+the json pass from gulp.src , which their format as following is correct:
 
 
 **Array**
