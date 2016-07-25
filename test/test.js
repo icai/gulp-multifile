@@ -5,6 +5,85 @@ var gutil = require('gulp-util');
 var multifile = require('../');
 
 
+describe('variable parameter', function() {
+	it('should compile template variable: "" to target content', function (cb) {
+		var stream = multifile({
+			template: 'test/fixture-data2.tpl',
+			variable: "",
+			rename: function(path){
+				return {
+					dirname: '',
+					basename: 'fixture',
+					extname: '.html'
+				}
+			}
+		});
+		stream.once('data', function (file) {
+			assert.equal(file.relative, 'fixture.html');
+			assert.equal(file.contents.toString(), '<p><em>foo</em></p>\nname1\ncat');
+		});
+		stream.on('end', cb);
+
+		stream.write(new gutil.File({
+			path: 'fixture.json',
+			contents: new Buffer('{ "name": "name1", "color": "cat"}')
+		}));
+		stream.end();
+	});
+	it('should compile template  variable: "it" to target content', function (cb) {
+		var stream = multifile({
+			template: 'test/fixture-data3.tpl',
+			variable: "it",
+			rename: function(path){
+				return {
+					dirname: '',
+					basename: 'fixture',
+					extname: '.html'
+				}
+			}
+		});
+		stream.once('data', function (file) {
+			assert.equal(file.relative, 'fixture.html');
+			assert.equal(file.contents.toString(), '<p><em>foo</em></p>\nname1\ncat');
+		});
+		stream.on('end', cb);
+
+		stream.write(new gutil.File({
+			path: 'fixture.json',
+			contents: new Buffer('{ "name": "name1", "color": "cat"}')
+		}));
+		stream.end();
+	});
+
+	it('should compile template  varname: "it" to target content', function (cb) {
+		var stream = multifile({
+			template: 'test/fixture-data3.tpl',
+			varname: "it",
+			rename: function(path){
+				return {
+					dirname: '',
+					basename: 'fixture',
+					extname: '.html'
+				}
+			}
+		});
+		stream.once('data', function (file) {
+			assert.equal(file.relative, 'fixture.html');
+			assert.equal(file.contents.toString(), '<p><em>foo</em></p>\nname1\ncat');
+		});
+		stream.on('end', cb);
+
+		stream.write(new gutil.File({
+			path: 'fixture.json',
+			contents: new Buffer('{ "name": "name1", "color": "cat"}')
+		}));
+		stream.end();
+	});
+
+
+})
+
+
 
 describe('template and rename parameter', function() {
 	it('should compile template to target content', function (cb) {
