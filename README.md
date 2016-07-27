@@ -1,5 +1,10 @@
 # gulp-multifile
 
+generate collection files from json files and template file.
+
+
+[![NPM](https://nodei.co/npm/gulp-multifile.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gulp-multifile/)
+
 
 
 ## Getting Started
