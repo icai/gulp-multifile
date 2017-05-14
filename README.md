@@ -16,7 +16,7 @@ you may install this plugin with this command:
 npm install gulp-multifile --save-dev
 ```
 
-##Setup
+## Setup
 
 Once the plugin has been installed, it may be enabled inside your gulpfile with this line of JavaScript:
 
@@ -48,7 +48,7 @@ gulp.task('gen:scss', function() {
 ```
 
 
-##Options
+## Options
 
 
 **Plugin options** are:
@@ -197,7 +197,7 @@ engine: function(templatefile){
 
 ##Note
 
-####Json File
+#### Json File
 the json pass from gulp.src , which their format as following is correct:
 
 
@@ -214,7 +214,7 @@ generate two file, which this json is a collection file.
 generate one file, which this json is a model file.
 
 
-####Template Engine
+#### Template Engine
 
 we use `lodash.template` to do this, you can use `engine` parameter to replace  it.
 
@@ -222,7 +222,7 @@ we use `lodash.template` to do this, you can use `engine` parameter to replace  
 
 
 
-##Demo
+## Demo
 see the [cozhihu](https://github.com/icai/cozhihu) project or unit testing.
 
 
@@ -232,4 +232,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## License
-Copyright (c) 2016 Terry Cai. Licensed under the MIT license.
+Copyright (c) 2017 Terry Cai. Licensed under the MIT license.
