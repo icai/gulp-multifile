@@ -195,7 +195,7 @@ engine: function(templatefile){
 
 ```
 
-##Note
+## Note
 
 #### Json File
 the json pass from gulp.src , which their format as following is correct:
