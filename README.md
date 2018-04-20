@@ -1,5 +1,7 @@
 # gulp-multifile
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/icai/gulp-multifile.svg)](https://greenkeeper.io/)
+
 generate collection files from json files and template file.
 
 
